@@ -1,0 +1,134 @@
+body {
+    font-size: 12px;
+}
+
+div input,
+div select{
+    font-size: 12px;
+    width: 200px;
+    margin-left: 10px;
+    border-style: groove;
+    font-family: 'Lato', sans-serif;
+}
+
+div input[type='checkbox'] {
+    width: 20px;
+}
+
+form {
+    font-family: 'Lato', sans-serif;
+    border: 1px;
+    border-style: solid;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+
+select {
+    margin-right: 5px;
+}
+
+button {
+    border-style: groove;
+    font-size: 12px;
+}
+
+label {
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 80px;
+    text-align: right;
+}
+
+
+#title {
+    font-family: 'Anton', sans-serif;
+    font-size: 40px;
+    display: flex;
+    margin-left: 600px;
+}
+
+#node1_span,
+#node2_span {
+    font-size: 14px;
+    font-weight: 800;
+}
+
+
+#node1 {
+    margin-left: 100px;
+}
+
+#node2 {
+    margin-left: 10px;
+    margin-right: 100px;
+}
+
+
+#node1 div,
+#node2 div {
+    padding-top: 5px;
+}
+
+#node1_file_search,
+#node2_file_search {
+    width: 80px;
+}
+
+#node1_file,
+#node2_file {
+    width: 400px;
+}
+
+
+.docker_running_state {
+    color: blue;
+    font-size: 16px;
+}
+
+.docker_stopped_state {
+    color: red;
+    font-size: 16px;
+}
+
+#upload_form {
+    font-family: 'Lato', sans-serif;
+    border: 1px;
+    border-style: solid;
+    width: 800px;
+    padding: 10px;
+    margin-left: 600px;
+    margin-bottom: 5px;
+}
+
+#file_chooser {
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+}
+
+.docker_stopped {
+    font-weight: 600;
+    color: green;
+    font-size: 12px;
+}
+
+.docker_started {
+    font-weight: 600;
+    color: red;
+    font-size: 12px;
+}
+
+.docker_running {
+    font-weight: 600;
+    color: #166ffc;
+    font-size: 12px;
+}

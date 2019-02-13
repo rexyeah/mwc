@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modulator Nodes</title>
+    <link href="https://fonts.googleapis.com/css?family=Anton|Lato" rel="stylesheet">
+    <link rel="icon" href="image//logo_e1adccfa49959a087ec72539b7fdf3ea_1x.png">
+    <link rel="stylesheet" type="text/css" href="../static/modulator.css">
+</head>
+<body>
+<div id='title'>
+    <!-- <img src="image//logo_e1adccfa49959a087ec72539b7fdf3ea_1x.png" style="width: 100px; display: inline;"> -->
+    Modulator Web Console
+</div>
+<form id="upload_form" action="/" enctype="multipart/form-data" method="post">
+    <span id='file_chooser'>
+        <input type="file" name="file" id="file">
+        <button id="upload">Upload</button>
+        <button type="button" id="cancel" style="display: none">Cancel</button>
+    </span>
+    <div>
+        <progress value="0" max="100" id="progressBar" style="width:400px; display: none"></progress>
+    </div>
+</form>
+<div id='node_farm' class="row">
+<form id='node1' class="column">
+    <span id='node1_span'>Node 1</span>
+    <p><span id="docker1_state"></span></p>
+    <div id='node1_parm_block'>
+        <p>
+            DVB-T
+        </p>
+        <input type='hidden' name='slot' value='0'>
+        <div><label>Band Width:</label> <input id='node1_bw' name='bw' value="8MHz"></div>
+        <div><label>Constellation:</label> <input id='node1_const' name='const' value="64QAM"></div>
+        <div><label>Code Rate:</label> <input id='node1_coderate' name='coderate' value="2/3"></div>
+        <div><label>TX mode:</label> <input id='node1_tx' name='tx' value="8K"></div>
+        <div><label>Guard interval:</label> <input id='node1_guard' name='guard' value="1/32"></div>
+        <div><label>Cell ID:</label> <input id='node1_cell-id' name='cellid' value="0"></div>
+        <div><label>Playback Rate:</label> <input id='node1_playrate' name='playrate' value=''></div>
+        <div><label>Frequency:</label> <input id='node1_rf' name='rf' value=''>MHz</div>
+        <div><label>TS File Path:</label> <select id='node1_file' name='file'></select> Quick search:</label> <input type="search" id="node1_file_search">(case insensitive)</div>
+        <div><label>Player:</label> <select id='player1' name='player'></select></div>
+    </div>
+    <br>
+    <div><input type='checkbox' id='node1_docker' name='docker' value='0'>Run on docker</div>
+    <p>
+        <button id='node1_play'>PLAY</button>
+        <button id='node1_stop'>STOP</button>
+        <span id='node1_ot_block'><input type='checkbox' id='node1_ot' name='ot' value='0'>Overnight Test</span>
+    </p>
+</form>
+<form id='node2' class="column">
+    <span id='node2_span'>Node 2</span>
+    <p><span id="docker2_state"></span></p>
+    <div id='node2_parm_block'>
+        <p>
+            DVB-T
+        </p>
+        <input type='hidden' name='slot' value='1'>
+        <div><label>Band Width:</label> <input id='node2_bw' name='bw' value="8MHz"></div>
+        <div><label>Constellation:</label> <input id='node2_const' name='const' value="64QAM"></div>
+        <div><label>Code Rate:</label> <input id='node2_coderate' name='coderate' value="2/3"></div>
+        <div><label>TX mode:</label> <input id='node2_tx' name='tx' value="8K"></div>
+        <div><label>Guard interval:</label> <input id='node2_guard' name='guard' value="1/32"></div>
+        <div><label>Cell ID:</label> <input id='node2_cell-id' name='cellid' value="0"></div>
+        <div><label>Playback Rate:</label> <input id='node2_playrate' name='playrate' value=""></div>
+        <div><label>Frequency:</label> <input id='node2_rf'" name='rf' value=''>MHz</div>
+        <div><label>TS File Path:</label> <select id='node2_file' name='file'></select> <label>Quick search:</label> <input type="search" id="node2_file_search">(case insensitive)</div>
+        <div><label>Player:</label> <select id='player2' name='player'></select></div>
+    </div>
+    <br>
+    <div><input type='checkbox' id='node2_docker' name='docker' value='0'>Run on docker</div>
+    <p>
+        <button id='node2_play'>PLAY</button>
+        <button id='node2_stop'>STOP</button>
+        <span id='node2_ot_block'><input type='checkbox' id='node2_ot' name='ot' value='0'>Overnight Test</span>
+    </p>
+</form>
+</div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="static/mwc.js"></script>
+<script src="static/events.js"></script>
+<script src="static/upload.js"></script>
+</html>
