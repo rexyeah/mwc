@@ -15,16 +15,6 @@ class Config(object):
         self._tsfiles = path("ALL_TS_FILE")
         self._nodecounts = 2
         self._job = []
-        # JOBS = [
-        #     {
-        #         'id': 'stop_all_nodes',
-        #         'func': 'mwc.Modulator._echo',
-        #         'trigger': 'cron',
-        #         'hour': 15,
-        #         'minute': 12
-        #     }
-        # ]
-        # SCHEDULER_API_ENABLED = True
 
     @property
     def players(self):
