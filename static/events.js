@@ -60,21 +60,18 @@ $('input[id$=ot]').on('click', function() {
     });
 });
 
-$('[id$=file]').on('change', function () {
-    // let id = this.id
-    let slot = get_slot(this.id);
-    socket.emit('get_mediainfo', {
-        "node": slot,
-        "filename": $(`#${this.id}`).val()
+$("select[id$=file]").on("change", function () {
+    let slot = get_slot(this.id)
+    socket.emit("get_mediainfo", {
+        "filename": $(this).val()
     });
-    socket.on('report_mediainfo', function(r) {
-        // $('#' + id.replace('file', 'playrate')).val(r.playrate);
-        $(`input[id=$playrate]:eq(${slot})`).val(r.playrate);
+    socket.on("report_mediainfo", function(r) {
+        $(`input[id$=playrate]:eq(${slot})`).val(r.playrate);
     });
 });
 
-$('[id$=_file_search]').on('input', function () {
-    let slot = get_slot(this.id);
-    $(`input[id$=_file]:eq(${slot})`).html('');
-    socket.emit('filter_ts', {"node": slot, "name": $(`#${this.id}`).val()})
+$("input[id$=_file_search]").on("input", function () {
+    let slot = get_slot(this.id)
+    $(`select[id$=file]:eq(${slot})`).html("");
+    socket.emit("filter_ts", {"node": slot, "name": $(this).val()})
 });

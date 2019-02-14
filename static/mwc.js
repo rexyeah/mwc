@@ -49,10 +49,10 @@ _change_docker_status = (e, action) => {
 }
 
 _set_filtered_ts_files = (r) => {
-    let node_file = `#node${r.node}_file`;
-    $(node_file).html('');
-    $.each(r.ts, (i, v) => {$(node_file).append(new Option(v, v));});
-    $(node_file).trigger('change');
+    let node_file = $(`select[id$=file]:eq(${r.node})`);
+    node_file.html('');
+    $.each(r.ts, (i, v) => {node_file.append(new Option(v, v));});
+    node_file.trigger('change');
 }
 
 // Change all input fileds UI look once the state is changed.
