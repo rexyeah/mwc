@@ -41,19 +41,22 @@ $('button[id$=play], button[id$=stop]').on('click', function (e) {
 
 $('input[id$=docker]').on('click', function() {
     let slot = this.id.match(/\d+/g).map(Number)[0] - 1;
-    if($('div[id$=_parm_block]').eq(slot).is(':visible')) {
-        this.value = "1";
-        $('div[id$=_parm_block]').eq(slot).hide('slow');
-        $('span[id$=_ot_block]').eq(slot).hide('slow');
-    }
-    else{
-        this.value = "0";
-        $('div[id$=_parm_block]').eq(slot).show('slow');
-        $('span[id$=_ot_block]').eq(slot).show('slow');
-    }
+    let docker_enabled = $('div[id$=_parm_block]').eq(slot).is(':visible');
+    let docker_blocks = $(`div[id$=_parm_block]:eq(${slot}), span[id$=_ot_block]:eq(${slot})`);
+    this.value = docker_enabled ? "1" : "0"
+    docker_enabled ? docker_blocks.hide("slow") : docker_blocks.show("slow");
     socket.emit('set_docker',{
         'node': slot,
         'docker': this.value
+    });
+});
+
+$('input[id$=ot]').on('click', function() {
+    let slot = this.id.match(/\d+/g).map(Number)[0] - 1;
+    this.value = this.checked ? "1" : "0";
+    socket.emit('set_overtime',{
+        'node': slot,
+        'ot': this.value
     });
 });
 

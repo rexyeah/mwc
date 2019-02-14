@@ -92,6 +92,12 @@ class Modulator:
         n.update({'docker': d['docker']})
         self.util._dump_json(d['node'], n)
 
+    def _set_overtime(self, ot):
+        print("set overtime")
+        n = self.util._load_json(ot['node'])
+        n.update({'ot': ot['ot']})
+        self.util._dump_json(ot['node'], n)
+
     def _play(self, n):
         n = json.loads(n)
         slot, docker, rf = n["slot"], n["docker"], n['rf']
@@ -188,6 +194,11 @@ def docker_state(d):
     m._docker_state(d)
 
 
+@socketio.on('set_overtime')
+def set_overtime(ot):
+    m._set_overtime(ot)
+
+
 @socketio.on('play')
 def play(n):
     m._play(n)
@@ -212,11 +223,9 @@ def index():
 def scheduled_stopper():
     for b in range(2):
         if os.path.exists('modulator.playing.%s' % b):
-            print(f"modulator.playing.{b} existed")
             node = json.load(open('%s' % b))
-            print(node)
-            if 'ot' not in node:
-                m._stop(node)
+            if node['ot'] == "0":
+                m._stop(json.dumps(node))
 
 
 class SchdulerConfig(object):
@@ -225,7 +234,7 @@ class SchdulerConfig(object):
             'id': 'stop_all_nodes',
             'func': scheduled_stopper,
             'trigger': 'cron',
-            'hour': 8,
+            'hour': 19,
             'minute': 30
         }
     ]
