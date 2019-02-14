@@ -40,7 +40,7 @@ $('button[id$=play], button[id$=stop]').on('click', function (e) {
 });
 
 $('input[id$=docker]').on('click', function() {
-    let slot = this.id.match(/\d+/g).map(Number)[0] - 1;
+    let slot = get_slot(this.id);
     let docker_enabled = $('div[id$=_parm_block]').eq(slot).is(':visible');
     let docker_blocks = $(`div[id$=_parm_block]:eq(${slot}), span[id$=_ot_block]:eq(${slot})`);
     this.value = docker_enabled ? "1" : "0"
@@ -52,7 +52,7 @@ $('input[id$=docker]').on('click', function() {
 });
 
 $('input[id$=ot]').on('click', function() {
-    let slot = this.id.match(/\d+/g).map(Number)[0] - 1;
+    let slot = get_slot(this.id);
     this.value = this.checked ? "1" : "0";
     socket.emit('set_overtime',{
         'node': slot,
@@ -61,18 +61,20 @@ $('input[id$=ot]').on('click', function() {
 });
 
 $('[id$=file]').on('change', function () {
-    let id = this.id
+    // let id = this.id
+    let slot = get_slot(this.id);
     socket.emit('get_mediainfo', {
-        node_id : id,
-        filename: $('#' + id).val()
+        "node": slot,
+        "filename": $(`#${this.id}`).val()
     });
     socket.on('report_mediainfo', function(r) {
-        $('#' + id.replace('file', 'playrate')).val(r.playrate);
+        // $('#' + id.replace('file', 'playrate')).val(r.playrate);
+        $(`input[id=$playrate]:eq(${slot})`).val(r.playrate);
     });
 });
 
 $('[id$=_file_search]').on('input', function () {
-    let node = this.id.match(/\d+/g).map(Number)[0];
-    $(`#node${node}_file`).html('');
-    socket.emit('filter_ts', {node: node, name: $('#' + this.id).val()})
+    let slot = get_slot(this.id);
+    $(`input[id$=_file]:eq(${slot})`).html('');
+    socket.emit('filter_ts', {"node": slot, "name": $(`#${this.id}`).val()})
 });
