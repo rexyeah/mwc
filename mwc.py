@@ -93,7 +93,6 @@ class Modulator:
         self.util._dump_json(d['node'], n)
 
     def _set_overtime(self, ot):
-        print("set overtime")
         n = self.util._load_json(ot['node'])
         n.update({'ot': ot['ot']})
         self.util._dump_json(ot['node'], n)
