@@ -117,7 +117,7 @@ label {
 
 .docker_stopped {
     font-weight: 600;
-    color: green;
+    color: #166ffc;
     font-size: 12px;
 }
 
