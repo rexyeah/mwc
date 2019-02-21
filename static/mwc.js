@@ -33,7 +33,7 @@ socket.on('report_docker_start', (e) => {
 _change_docker_status = (e, action) => {
     let start = action == "start" ? 1 : 0;
     let ele = $(`#docker${(parseInt(e.slot)+1)}_state`);
-    let msg = `docker: ${start?"started.":"stopped. Node would be reloaded in 3 sec..."}`;
+    let msg = `docker: ${start?"started.":"stopping. Node would be fully stopped in 15 sec..."}`;
     ele.empty();
     ele.removeClass("docker_running");
     ele.text(msg);
@@ -44,7 +44,7 @@ _change_docker_status = (e, action) => {
     else {
         ele.removeClass("docker_started");
         ele.addClass("docker_stopped");
-        window.setTimeout(() => {window.location.reload();}, 3000);
+        window.setTimeout(() => {window.location.reload();}, 15000);
     }
 }
 
