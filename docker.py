@@ -23,7 +23,7 @@ class Docker():
     def run(self, n):
         os.chdir(self.wd)
         docker_cmd = "./docker.sh"
-        cmd = f"{docker_cmd} run {self.nodes[n]}".split(' ')
+        cmd = f"{docker_cmd} run --slot {n}".split(' ')
         p = Popen(cmd, stdin=PIPE, stderr=PIPE, stdout=PIPE, encoding='utf8')
         result = ""
         os.chdir(self.base)
@@ -39,7 +39,8 @@ class Docker():
         cmd = './docker.sh stop'.split(' ')
         p = Popen(cmd, stdin=PIPE, stderr=PIPE, stdout=PIPE)
         os.chdir(self.base)
-        msg = ['modulator_netdvb', 'modulator_proxy']
+        msg = ['Stopping containers gracefully',
+               'modulator_netdvb', 'modulator_proxy']
         while True:
             output = str(p.stdout.readline())
             if any(o in output for o in msg):
