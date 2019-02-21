@@ -18,6 +18,7 @@ $('button[id$=play], button[id$=stop]').on('click', function (e) {
                     result[key] = value;
                 });
                 result['docker'] = $('input[id$=docker]').eq((n-1)).val()
+                result['ot'] = $('input[id$=ot]').eq((n-1)).val()
                 return JSON.stringify(result);
             }
             return generate_form_data((node+1))
